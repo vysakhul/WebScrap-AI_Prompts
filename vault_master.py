@@ -38,6 +38,8 @@ def optimize_storage():
 
     large_files = []
     initial_total_size = 0
+    skipped = 0
+    done_records = {folder: load_done_record(folder) for folder in target_folders}
 
     for folder in target_folders:
         if not folder.exists(): continue
@@ -45,11 +47,17 @@ def optimize_storage():
             for file_path in folder.glob(ext):
                 size = file_path.stat().st_size
                 if size > size_threshold:
+                    # Already optimized on a previous run; re-encoding would only lose quality
+                    if done_records[folder].get(file_path.name) == size:
+                        skipped += 1
+                        continue
                     large_files.append(file_path)
                     initial_total_size += size
 
+    if skipped:
+        print(f"Skipping {skipped} images that were already compressed as far as practical.")
     if not large_files:
-        print("All images are already optimized (under 500 KB).")
+        print("All images are already optimized.")
         return
 
     print(f"Found {len(large_files)} images larger than 500KB.")
@@ -59,51 +67,113 @@ def optimize_storage():
     if choice != 'y': return
 
     print("\nCompressing... (Please do not close the terminal)")
-    final_total_size = 0
-    errors = 0
+    saved_bytes = 0
+    converted = 0
+    still_large = []
+    errors = []
 
     for i, file_path in enumerate(large_files, 1):
         sys.stdout.write(f"\r[{i}/{len(large_files)}] Processing: {file_path.name[:30]}...   ")
         sys.stdout.flush()
 
         temp_path = file_path.with_suffix('.tmp')
-        ext = file_path.suffix.lower()
+        original_size = file_path.stat().st_size
 
         try:
             with Image.open(file_path) as img:
-                # 1. FIX: Safely convert Palette images to prevent transparency loss
+                img.load()
                 if img.mode == 'P' and 'transparency' in img.info:
                     img = img.convert('RGBA')
 
-                # 2. Resize if necessary
                 if img.width > max_width:
                     ratio = max_width / float(img.width)
                     new_height = int(img.height * ratio)
                     img = img.resize((max_width, new_height), Image.Resampling.LANCZOS)
 
-                # 3. Save with the appropriate format
-                if ext == '.png':
+                if has_transparency(img):
+                    # Keep PNG so transparency survives; fall back to a 256-colour palette if still too big
                     img.save(temp_path, "PNG", optimize=True)
+                    if temp_path.stat().st_size > size_threshold:
+                        img.convert("RGBA").quantize(256, method=Image.Quantize.FASTOCTREE).save(
+                            temp_path, "PNG", optimize=True)
+                    dest_path = file_path
                 else:
-                    # JPEGs cannot handle transparency, so we strip it safely to RGB
-                    if img.mode in ("RGBA", "P", "LA"):
+                    # Opaque images (including PNG/WebP photos) are stored as JPEG; lossless PNG
+                    # re-saves were why large files kept reappearing on every run.
+                    if img.mode not in ("RGB", "L"):
                         img = img.convert("RGB")
-                    img.save(temp_path, "JPEG", optimize=True, quality=85)
+                    for quality in (85, 75, 65):
+                        img.save(temp_path, "JPEG", optimize=True, progressive=True, quality=quality)
+                        if temp_path.stat().st_size <= size_threshold:
+                            break
+                    dest_path = file_path.with_suffix(".jpg")
 
-            os.replace(temp_path, file_path)
-            final_total_size += file_path.stat().st_size
+            # Keep the original unless the new copy is meaningfully smaller
+            if temp_path.stat().st_size >= original_size * 0.9 and dest_path == file_path:
+                temp_path.unlink()
+                still_large.append(file_path)
+                continue
+
+            os.replace(temp_path, dest_path)
+            if dest_path != file_path:
+                # The gallery and sync scripts find Banana images by UUID with any extension
+                file_path.unlink()
+                converted += 1
+
+            new_size = dest_path.stat().st_size
+            saved_bytes += original_size - new_size
+            if new_size > size_threshold:
+                still_large.append(dest_path)
 
         except Exception as e:
-            errors += 1
+            errors.append(f"{file_path.name}: {e}")
             if temp_path.exists():
                 temp_path.unlink()
 
+    for path in still_large:
+        done_records[path.parent][path.name] = path.stat().st_size
+    for folder, record in done_records.items():
+        save_done_record(folder, record)
+
     sys.stdout.write("\r" + " " * 80 + "\r")
-    saved_mb = (initial_total_size - final_total_size) / (1024 * 1024)
     print("\n[SUCCESS] Optimization Complete!")
-    print(f"Images Processed: {len(large_files)}")
-    print(f"Errors Skipped: {errors}")
-    print(f"Space Saved: {saved_mb:.2f} MB")
+    print(f"Images Processed: {len(large_files) - len(errors)}")
+    print(f"Converted to JPEG: {converted}")
+    print(f"Space Saved: {saved_bytes / (1024 * 1024):.2f} MB")
+    if still_large:
+        print(f"Still above 500 KB (already as small as practical): {len(still_large)}")
+    if errors:
+        print(f"Errors Skipped: {len(errors)}")
+        for err in errors[:10]:
+            print(f"  - {err}")
+
+
+OPTIMIZER_RECORD = ".optimizer_done.json"
+
+
+def load_done_record(folder):
+    try:
+        with open(folder / OPTIMIZER_RECORD, encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {}
+
+
+def save_done_record(folder, record):
+    if not folder.exists():
+        return
+    # Drop entries for files that were deleted or replaced since
+    record = {name: size for name, size in record.items()
+              if (folder / name).exists() and (folder / name).stat().st_size == size}
+    with open(folder / OPTIMIZER_RECORD, "w", encoding="utf-8") as f:
+        json.dump(record, f)
+
+
+def has_transparency(img):
+    if img.mode in ("RGBA", "LA") or (img.mode == "P" and "transparency" in img.info):
+        alpha = img.convert("RGBA").getchannel("A")
+        return alpha.getextrema()[0] < 255
+    return False
 
 
 # ==========================================
@@ -386,4 +456,4 @@ def main_menu():
 
 
 if __name__ == "__main__":
-    main_menu()
+    main_menu()
