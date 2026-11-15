@@ -1,0 +1,179 @@
+id,title,prompt,category_tag,model,image_url,local_path,author_name
+personal_20260704_080256,Photo Analyse and Auto Edit I,"Carefully analyze the uploaded photo and understand its subject, environment, lighting, colors, and overall mood.
+
+Apply high-end, professional cinematic color grading in a refined Orange & Teal color tone, as if a top-level creator
+spent hours manually editing this image in Lightroom and Photoshop.
+
+Edit the image according to its natural category (portrait, people, nature, street, travel, animal, architecture,
+lifestyle, etc.) and enhance it in a visually pleasing, realistic, and premium way, while maintaining the Orange &
+Teal cinematic look.
+
+EDITING STYLE & LOOK
+• Clean, professional Orange & Teal cinematic color grading
+• Warm, natural orange tones in highlights and warmer areas
+• Cool, controlled teal tones in shadows and background
+• Balanced contrast (not harsh, not flat)
+• Soft highlights and deep but detailed shadows
+• Proper dynamic range and tonal balance
+• Subtle cinematic depth and subject separation
+
+BACKGROUND BOKEH (IMPORTANT)
+Add natural, realistic background bokeh where it makes sense
+• Keep the main subject sharp and clear
+• Background should softly blur to create depth
+• Bokeh must look optical and natural, not artificial or fake
+• Do not over-blur; keep it subtle and cinematic
+
+COLOR GRADING PRINCIPLES
+• Maintain realistic and natural overall colors
+• Apply Orange & Teal tones tastefully, not overdone
+• No oversaturation or extreme color shifts
+• Clean whites and detailed blacks
+• Color harmony should feel intentional and professional
+
+LIGHTING & MOOD
+• Respect the original lighting conditions
+• Enhance existing light naturally
+
+
+• Do not introduce artificial or unrealistic lighting
+• Create a cinematic, high-end mood while staying realistic
+
+IMPORTANT RESTRICTIONS
+• Do not change the structure, shape, or reality of the scene
+• No artificial AI-art look, no illustration, no cartoon style
+• No over-processing or excessive effects
+• The image must look naturally color-graded and realistically edited, not digitally manipulated
+
+FINAL RESULT
+The photo should look like a professionally edited Orange & Teal cinematic image with subtle background bokeh,
+crafted with expert taste — clean, natural, premium, and visually powerful, as if edited by a high-end filmmaker.
+
+Important Notice
+Do not explain the process.
+Do not describe the edits.
+Just apply the Orange & Teal color grading and background bokeh based on expert judgment",Auto edit,ChatGPT,,images/personal_20260704_080256.jpg,Personal
+personal_20260704_080528,Photo Analyse and Auto Edit II,"Carefully analyze the uploaded photo and understand what type of image it is subject, environment, lighting,
+colors, and mood.
+
+Apply high-end, professional cinematic color grading with a subtle cinematic color tone, as if a top-level creator
+spent hours editing this image manually in Lightroom and Photoshop.
+
+Edit the image according to its natural category (portrait, nature, street, travel, animal, architecture, lifestyle, etc.)
+and enhance it in the most visually pleasing and professional way, adding gentle cinematic depth and a slight,
+natural background bokeh where appropriate.
+
+EDITING STYLE & LOOK
+Natural yet cinematic color grading
+Premium, clean, high-end creator aesthetic
+Balanced contrast (not harsh, not flat)
+Soft highlights and deep but detailed shadows
+Proper dynamic range and tonal balance
+Subtle depth, separation, and light background bokeh where it enhances the image
+
+COLOR GRADING PRINCIPLES
+Maintain realistic and natural colors
+Enhance colors without oversaturation
+Slightly muted tones where cinematic feel suits the image
+Rich but controlled blues and greens
+Clean whites and detailed blacks
+Overall color harmony should feel intentional and professional
+
+LIGHTING & MOOD
+Respect the original lighting conditions
+Enhance existing light naturally
+Do not introduce artificial or unrealistic lighting
+Create a cinematic mood while keeping the image realistic
+
+IMPORTANT RESTRICTIONS
+Do not change the structure, shape, or reality of the scene
+No artificial AI-art look, no illustration, no cartoon style
+No over-processing or excessive effects
+The image must look naturally color-graded and subtly depth-enhanced, not digitally manipulated
+
+FINAL RESULT
+The photo should look like a professionally edited, high-end cinematic image with refined cinematic color tones
+and a touch of natural bokeh, carefully color-graded with expert taste — clean, natural, premium, and visually
+
+
+powerful.
+
+Important Notice
+Do not explain the process.
+Do not describe the changes.
+Just apply the color grading, cinematic tone, and subtle bokeh based on expert judgment.",Auto edit,ChatGPT,,images/personal_20260704_080528.jpg,Personal
+personal_20261115_153058,Cinematic Moody-Green,"Apply cinematic moody-green colour grading with deep natural greens, warm highlights, enhanced colours, soft creamy background bokeh, shallow depth of field, and professional DSLR photography. Keep the subject sharp and realistic. Aspect ratio 3:4.","trip, character",Unknown,,images/personal_20261115_153058.jpg,Personal
+personal_20261115_153605,Pop out effect,"Each uploaded photo must be transformed into a separate, independent, premium editorial poster. Multiple photos must never be combined into a single poster. Use a strict 3:4 vertical canvas.
+
+CANVAS STRUCTURE AND LAYOUT
+
+Split the canvas horizontally at the exact center. The upper half and the lower half must each occupy exactly 50% of the total canvas height. Both sections must have equal width and height, with no alteration of the original photo's proportions.
+
+UPPER HALF — ORIGINAL PHOTOGRAPH
+
+The upper half must use the original uploaded photo directly and must not be regenerated.
+
+Preserve the identity of the main subject, human body or architectural structure, proportions, perspective, spatial relationships, texture, natural light and shadow, color, and environment in their entirety.
+
+Only slight cropping and restrained premium color grading are permitted.
+
+Redrawing the main subject, fictional lighting, HDR effects, excessive saturation, plastic textures, and fictional content are strictly prohibited.
+
+When adapting the image to the frame, only environmental areas such as the sky, water surface, ground, walls, plants, or background may be extended.
+
+LOWER HALF — EDITORIAL RECONSTRUCTION
+
+The lower half must extract and reconstruct the ""narrative core"" of the original photo.
+
+This can be a single primary subject or a group of related elements that together embody the photo's identity, scale, action, or story relationship.
+
+Maintain the subject's realistic and recognizable appearance, proportions, internal structure, texture, and relative position.
+
+Do not remove important related elements, and do not directly use rectangular photo cutouts.
+
+The reconstructed subject should typically occupy 55%–80% of the width of the lower area.
+
+It should naturally extend according to the photo's primary direction and retain plausible ground, water lines, shadows, or softly dissipated edges to integrate into the background. Avoid a sticker-like or floating appearance.
+
+GEOMETRIC COLOR WINDOW
+
+Incorporate a narrow, low-saturation geometric color field behind or through the center of the subject, serving as a ""critical window"" between reality and editorial abstraction.
+
+The color of the window must be extracted from the original photo.
+
+Its orientation — horizontal, vertical, or diagonal — should be chosen based on the overall narrative direction.
+
+The subject must actively pass through the window: part of it must be within the color field, while another part enters the open negative space, naturally crossing the window's boundary to create occlusion, penetration, and spatial depth.
+
+The window is not a frame or a card. It must not fully enclose the subject.
+
+Only one primary window is allowed.
+
+Multiple color blocks, thick borders, rounded corners, strong gradients, and drop shadows are strictly prohibited.
+
+BACKGROUND AND EDITORIAL COMPOSITION
+
+Use a white, cool white, very light gray, or near-white background for the lower half, coordinated with the original photograph.
+
+Employ a restrained asymmetrical composition and abundant negative space to establish a three-tier visual hierarchy:
+
+Reconstructed subject or narrative composition.
+Low-saturation geometric window.
+Clean editorial negative space.
+Maintain a sophisticated, premium editorial aesthetic inspired by contemporary magazine design, minimalist Swiss graphic design, and high-end art direction.
+
+The final composition must feel naturally integrated, visually balanced, realistic, and professionally art-directed, while preserving the identity and narrative of the original photograph.
+
+FINAL REQUIREMENTS
+
+Strict 3:4 vertical aspect ratio.
+Exact 50/50 horizontal division.
+Upper half: original photograph, not regenerated.
+Lower half: reconstructed editorial composition.
+Preserve the original subject's identity and recognizable details.
+Use only one low-saturation geometric color window.
+Maintain natural integration, realistic depth, and abundant negative space.
+No fictional elements, excessive effects, or unnecessary decorations.
+Each uploaded photo must produce its own independent poster.
+Never combine multiple uploaded photographs into one composition.",character,Unknown,,images/personal_20261115_153605.jpg,Personal
+personal_20261115_154000,Pop out effect 2,"Transform this photo into a premium minimalist editorial collage on a warm ivory paper background (3:4 vertical). Keep the original photo and subject unchanged. Create a realistic 3D pop-out effect where the subject and natural elements extend beyond the bottom edge of the photo frame, with subtle shadows, depth, and elegant luxury-magazine aesthetics.",Character,Unknown,,images/personal_20261115_154000.jpg,Personal
